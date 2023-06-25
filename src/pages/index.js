@@ -4,6 +4,9 @@ import Head from "next/head";
 // import Image from "next/image";
 import styles from "@/styles/Home.module.scss";
 import Link from 'next/link'
+// let apiUrlEndPoint  = "https://next-aws-mysql.vercel.app";
+// let apiUrlEndPoint  = "http://localhost:3000";
+let apiUrlEndPoint  = "";
 
 export default function Home() {
   const productNameRef = useRef();
@@ -30,10 +33,10 @@ export default function Home() {
       }),
     };
     if (productName.length < 3) return;
-    const res = await fetch(
-      // `${process.env.NEXT_PUBLIC_URL}/api/products`,
-       `http://localhost:3000/api/products`,
-      postData
+    // `${process.env.NEXT_PUBLIC_URL}/api/products`,
+      //  `http://localhost:3000/api/products`,
+    const res = await fetch(`/api/products`, postData     
+      
     );
     const response = await res.json();
     console.log(response);
@@ -56,11 +59,9 @@ export default function Home() {
         "Content-Type": "application/json",
       },
     };
-    const res = await fetch(
-      // `${process.env.NEXT_PUBLIC_URL}/api/products`,
-      `http://localhost:3000/api/products`,
+     // `${process.env.NEXT_PUBLIC_URL}/api/products`,
+    const res = await fetch(`/api/products`,postData
       
-      postData
     );
     const response = await res.json();
     setProducts(response.products);
@@ -80,7 +81,7 @@ export default function Home() {
     };
     const res = await fetch(
       // `${process.env.NEXT_PUBLIC_URL}/api/products`,
-      'http://localhost:3000/api/products',
+      apiUrlEndPoint + '/api/products',
       
       postData
     );
@@ -108,7 +109,7 @@ export default function Home() {
     };
     const res = await fetch(
       // `${process.env.NEXT_PUBLIC_URL}/api/products`,
-      `http://localhost:3000/api/products`,
+      apiUrlEndPoint + `/api/products`,
       
       postData
     );

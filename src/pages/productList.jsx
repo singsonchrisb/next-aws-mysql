@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Product.module.scss";
 import Link from 'next/link'
-// import Image from "next/image";
+import Image from "next/image";
+// let apiUrlEndPoint  = "https://next-aws-mysql.vercel.app";
+let baseapiUrlEndPoint  = "";
+// "http://localhost:3000";
 
 export default function ProductImg() {
     const [dataResponse, setdataResponse]= useState([]);
@@ -9,7 +12,7 @@ export default function ProductImg() {
     useEffect(() => {
         async function getPageData() {
        
-       const apiUrlEndPoint ="http://localhost:3000/api/getData-lib";
+       const apiUrlEndPoint =  "/api/getData-lib";
        const response = await fetch(apiUrlEndPoint);
        const res = await response.json();
        console.log(res.products);
@@ -34,6 +37,12 @@ export default function ProductImg() {
                             <div className={styles.photo}>
                                 {/* <img src='/images/shoes1.jpg' alt="" /> */}
                                 {/* <img src={`/images/${product.product_image}`} alt=""/> */}
+                                <Image
+                                    src={`/images/${product.product_image}`}
+                                    alt="Picture of the product"
+                                    width={200}
+                                    height={200}
+                                />
                             </div>
                         </div>
                     );
